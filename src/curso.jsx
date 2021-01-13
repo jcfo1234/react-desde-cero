@@ -1,31 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Curso = () => {
+// ### Componente presentacional o funcional ###
+// De-structure the object props into {title, image, price, profesor}
+const Curso = ({title, image, price, profesor}) => {
     return (
         <article className="card">
-        <div className="img-container s-ratio-16-9 s-radius-tr s-radius-tl">
-          <img src="https://edteam-media.s3.amazonaws.com/courses/small/608331fa-c0c6-4f7c-9ad7-470903923179.jpg" alt="AWS" />
-        </div>
-        <div className="card__data s-border s-radius-br s-radius-bl s-pxy-2">
-          <h3 className="t5 s-mb-2 s-center">
-            Programación orientada a objetos con Go
-          </h3>
-          <div className="s-mb-2 s-main-center">
-            <div className="card__teacher s-cross-center">
-              <div className="card__avatar s-mr-1">
-                <div className="circle img-container">
-                  <img src="https://edteam-media.s3.amazonaws.com/users/thumbnail/eb52cf60-d29a-4b6d-a8cf-75c902b87fa7.png" alt="Gerardo Castro" />
-                </div>
-              </div>
-              <span className="small">Gerardo Castro</span>
+          <div className="img-container s-ratio-16-9 s-radius-tr s-radius-tl">
+            <img src={image} alt={title} />
+          </div>
+          <div className="card__data s-border s-radius-br s-radius-bl s-pxy-2">
+            <h3 className="center">{title}</h3>
+            <div className="s-main-center">
+              {`Prof.: ${profesor}`}
+            </div>
+            <div className="s-main-center">
+              <a className="button--ghost-alert button--tiny" href="#">{`$ ${price}`}</a>
             </div>
           </div>
-          <div className="s-main-center">
-            <a className="button--ghost-alert button--tiny" href="#">$ 20USD</a>
-          </div>
-        </div>
         </article>
     );
+}
+
+// Tipo de datos en las propiedades: string, number, ... etc
+Curso.propTypes = {
+  title: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.string,
+  profesor: PropTypes.string
+}
+
+// Declara propiedades por defecto del componente en caso de que no se pasen en el componente Curso
+Curso.defaultProps = {
+  title: "No se encontro titulo",
+  image: "http://www.ciudaddelapunta.com/sitio/fotos/ciudad/miniaturas/006.jpg",
+  price: "--",
+  profesor: ""
 }
 
 export default Curso;
