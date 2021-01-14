@@ -3,13 +3,35 @@
 import './styles/styles.scss';
 import Banner from './banner';
 import Formulario from './formulario';
+import CourseGrid from './courseGrid';
+import Course from './course';
+import MainMenu from './mainmenu';
+import Historial from './historial';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 const App = () => {
   return (
-    <>
-      <Banner />
-      <Formulario name="EDTeam"/>
-    </>
+    <Router>
+      <MainMenu />
+      <Switch>
+        <Route path="/" exact component={ Banner } />
+        <Route path="/cursos/:id" component={ Course } />
+        <Route path="/cursos" component={ CourseGrid } />
+        <Route path="/historial/:valor" component={Historial} />
+        <Route path="/historial" component={Historial} />
+        <Route path="/formulario" component={ () => (<Formulario name="Pagina de Contacto" />) } />
+        <Route component={() => {
+          return (
+            <div className="ed-grid">
+              <h1>
+                Error 404
+              </h1>
+              <span>Pagina no encontrada</span>
+            </div>
+          );
+        }} />
+      </Switch>
+    </Router>
   );
 }
 
