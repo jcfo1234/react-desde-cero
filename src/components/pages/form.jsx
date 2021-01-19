@@ -1,32 +1,32 @@
 import React, {Component} from 'react';
 
-class Formulario extends Component {
+class Form extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            nombre: "",
-            correo: "",
-            fecha: new Date()
+            name: "",
+            email: "",
+            date: new Date()
         }
 
         // Bind methods to JSX
-        this.cambiarNombre = this.cambiarNombre.bind(this);
-        this.cambiarCorreo = this.cambiarCorreo.bind(this);
-        this.cambiarFecha = this.cambiarFecha.bind(this);
+        this.changeName = this.changeName.bind(this);
+        this.changeEmail = this.changeEmail.bind(this);
+        this.changeDate = this.changeDate.bind(this);
     }
 
-    cambiarNombre(e) {
+    changeName(e) {
         // setState updates the state of the object
-        this.setState({nombre: e.target.value});
+        this.setState({name: e.target.value});
     }
 
-    cambiarCorreo(e) {
-        this.setState({correo: e.target.value});
+    changeEmail(e) {
+        this.setState({email: e.target.value});
     }
 
-    cambiarFecha() {
-        this.setState({fecha: new Date()})
+    changeDate() {
+        this.setState({date: new Date()})
     }
 
     // Renderize to HTML DOM and React DOM
@@ -34,21 +34,21 @@ class Formulario extends Component {
         return (
             <div className="ed-grid">
                 <h1>Formulario {this.props.name}</h1>
-                <h4>{`Fecha actual: ${Math.ceil(this.state.fecha/1000)}`}</h4>
+                <h4>{`Fecha actual: ${Math.ceil(this.state.date/1000)}`}</h4>
                 <form id="elemento">
                     <div className="ed-grid m-grid-2">
                         <div className="form__item">
                             <label>Nombre completo</label>
                             <input 
                                 type="text" 
-                                onChange={this.cambiarNombre} 
+                                onChange={this.changeName} 
                             />
                         </div>
                         <div className="form__item">
                             <label htmlFor="">Correo Electronico</label>
                             <input 
                                 type="email"
-                                onChange={this.cambiarCorreo}
+                                onChange={this.changeEmail}
                             />
                         </div>
                         <div className="form__item">
@@ -57,16 +57,16 @@ class Formulario extends Component {
                     </div>
                 </form>
                 <div>
-                    <h2>{ `Hola ${this.state.nombre}` }</h2>
-                    <span>{ `Tu correo es: ${this.state.correo}` }</span>
+                    <h2>{ `Hola ${this.state.name}` }</h2>
+                    <span>{ `Tu correo es: ${this.state.email}` }</span>
                 </div>
             </div>
         );
     }
 
     componentDidMount() {
-        this.intervaloFecha = setInterval(() => {
-            this.cambiarFecha();
+        this.dateInterval = setInterval(() => {
+            this.changeDate();
         }, 1000)
     }
 
@@ -74,8 +74,8 @@ class Formulario extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.intervaloFecha);
+        clearInterval(this.dateInterval);
     }
 }
 
-export default Formulario;
+export default Form;
