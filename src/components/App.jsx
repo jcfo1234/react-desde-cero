@@ -3,7 +3,7 @@
 import '../styles/styles.scss';
 import Home from './pages/home';
 import Form from './pages/form';
-import CourseGrid from './organisms/courseGrid';
+import Courses from './pages/courses';
 import Course from './pages/course';
 import MainMenu from './organisms/mainmenu';
 import History from './pages/history';
@@ -17,7 +17,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={ Home } />
         <Route path="/cursos/:id" component={ Course } />
-        <Route path="/cursos" component={ CourseGrid } />
+        <Route path="/cursos" component={ Courses } />
         <Route path="/historial/:valor" component={History} />
         <Route path="/historial" component={History} />
         <Route path="/usuarios" component={Users} />
